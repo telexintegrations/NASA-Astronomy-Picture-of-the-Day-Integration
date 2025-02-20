@@ -1,0 +1,71 @@
+
+{
+    "data": {
+      "date": {
+        "created_at": "2025-02-19",
+        "updated_at": "2025-02-19"
+      },
+      "author": "EBlaze",
+      "descriptions": {
+        "app_description": "A different astronomy and space science related image is featured each day, along with a brief explanation.",
+        "app_logo": "https://apod.nasa.gov/favicon.ico",
+        "app_name": "NAPOD",
+        "app_url": "https://apod.nasa.gov/apod/",
+        "background_color": "#ADC9DE"
+      },
+      "integration_category": "Communication & Collaboration",
+      "integration_type": "interval",
+      "is_active": true,
+      "output": [
+        {
+          "label": "general",
+          "value": true
+        }
+      ],
+      "key_features": [
+        "Automate the dissemination of NASA's APOD to keep users informed and inspired.",
+        "Enhance user engagement by providing daily educational and visually appealing content."
+      ],
+      "permissions": {},
+      "settings": [
+        {
+          "label": "interval",
+          "type": "text",
+          "description": "The interval at which the integration will run. The format is a cron expression.",
+          "required": true,
+          "default": "* * * * *"
+        },
+        {
+          "label": "API Key",
+          "type": "text",
+          "description": "The API key for the NASA APOD API.",
+          "required": true,
+          "default": ""
+        },
+        {
+          "label": "Target Output",
+          "type": "multi-checkbox",
+          "description": "Select the output you would like to send to the target.",
+          "required": true,
+          "default": "Twitter",
+          "options": ["Twitter", "Slack"]
+        },
+        {
+          "label": " Slack Channel",
+          "type": "text",
+          "description": "The Slack channel to which the integration will post the APOD.",
+          "required": true,
+          "default": ""
+        },
+        {
+          "label": "Twitter Handle",
+          "type": "text",
+          "description": "The Twitter handle to which the integration will post the APOD.",
+          "required": true,
+          "default": ""
+        }
+      ],
+      "target_url": "URL for integration or service.",
+      "tick_url": "URL for integration or service."
+    }
+  }
