@@ -28,28 +28,28 @@ class ServerResource(Resource):
     @staticmethod
     def tick():
         print("running tick")
-        # print(request.json)
+        print(request.json)
 
-        url = "https://ping.telex.im/v1/webhooks/01951da5-750a-74c1-befc-559a5a88785e"
-        # payload = {
-        #     "event_name": "Daily Post",
-        #     "message": "Hello From NAPOD",
-        #     "status": "success",
-        #     "username": "NAPOD"
-        # }
+        url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
+        payload = {
+            "event_name": "NASA Picture of the Day",
+            "message": "Hello From NAPOD",
+            "status": "success",
+            "username": "NAPOD"
+        }
 
-        # response = requests.post(
-        #     url,
-        #     json=payload,
-        #     headers={
-        #         "Accept": "application/json",
-        #         "Content-Type": "application/json"
-        #     }
-        # )
+        response = requests.post(
+            url,
+            json=payload,
+            headers={
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        )
         response = {'status': 'accepted'}
         print(response)
         
-        return jsonify(response), 202
+        return jsonify({'status': 'accepted'}), 202
 
     @staticmethod
     def target():
