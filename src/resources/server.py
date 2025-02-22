@@ -68,11 +68,11 @@ class ServerResource(Resource):
             }
         response_data = {
                 "event_name": "message_formatted",
-                "message": "Hello, world world. I hope you are happy happy today",
+                "message": f"Hello From NAPOD",
                 "status": "success",
                 "username": "message-formatter-bot"
             }
-        return jsonify(response_data), 202
+        return jsonify(response_data), 200
     
     @staticmethod
     def get_apod():
