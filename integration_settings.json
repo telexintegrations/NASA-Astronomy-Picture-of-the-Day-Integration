@@ -33,7 +33,7 @@
           "type": "text",
           "description": "The interval at which the integration will run. The format is a cron expression.",
           "required": true,
-          "default": "* * * * *"
+          "default": "*/2 * * * *"
         },
         {
           "label": "API Key",

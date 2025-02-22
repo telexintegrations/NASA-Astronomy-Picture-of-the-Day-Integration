@@ -28,7 +28,7 @@ class ServerResource(Resource):
     @staticmethod
     def tick():
         print("running tick")
-        print(request.json)
+        # print(request.json)
 
         url = "https://ping.telex.im/v1/webhooks/01951da5-750a-74c1-befc-559a5a88785e"
         # payload = {
@@ -46,7 +46,7 @@ class ServerResource(Resource):
         #         "Content-Type": "application/json"
         #     }
         # )
-        response = url
+        response = {'status': 'accepted'}
         print(response)
         
         return jsonify(response), 202
@@ -72,7 +72,7 @@ class ServerResource(Resource):
                 "status": "success",
                 "username": "message-formatter-bot"
             }
-        return jsonify(response_data), 200
+        return jsonify(response_data), 202
     
     @staticmethod
     def get_apod():
