@@ -172,7 +172,7 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
   - Fetches APOD data from NASA’s API, formats the content, and posts it to the configured Telex channel.  
   - Optionally cross-posts to Slack/Twitter if enabled.
 
-   - `target_url` for channel is expected when making a post request
+   - `return_url` for channel is expected when making a post request
    ```bash
       curl -XPOST  https://napod.onrender.com/api/tick -H "accept: application/json"   -H "Content-Type: application/json"   -d '{
          "return_url": "https://ping.telex.im/v1/webhooks/01952fb5-b579-7754-9218-6fafaa359a21",
