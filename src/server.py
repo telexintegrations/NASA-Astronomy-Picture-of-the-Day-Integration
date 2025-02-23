@@ -32,7 +32,7 @@ for blueprint in vars(routes).values():
     if isinstance(blueprint, Blueprint):
         server.register_blueprint(
             blueprint,
-            url_prefix= f"/api{config.app_path}"
+            url_prefix= f"/api"
         )
 
 if __name__ == "__main__":
