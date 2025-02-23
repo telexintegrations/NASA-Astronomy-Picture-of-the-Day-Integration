@@ -12,7 +12,6 @@ class APODManager:
     def get_apod(self):
         url = f"{self.apod_url}?api_key={self.apod_key}"
         response = requests.get(url)
-        print(response.json())
         if response.status_code != 200:
             return {"error": "An error occurred while fetching the APOD data"}, 400
         return response.json()
@@ -23,10 +22,7 @@ def trigger_tick(url):
     NM = APODManager()
     res = NM.get_apod()
 
-    print(res)
-
     message = response_formatter(res)
-    print(message)
 
     payload = {
             "event_name": "NASA Picture of the Day",

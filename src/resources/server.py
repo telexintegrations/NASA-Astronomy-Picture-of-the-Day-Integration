@@ -29,10 +29,11 @@ class ServerResource(Resource):
     @staticmethod
     def tick():
         print("running tick")
-        # print(request.json)
-        url = request.json['return_url']
-
-        # url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
+        if request.method == 'POST':
+            print(request.json)
+            url = request.json.get('target_url', "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d")
+        else:
+            url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
 
         executor = ThreadPoolExecutor(max_workers=1)
         executor.submit(trigger_tick, url)
@@ -46,22 +47,12 @@ class ServerResource(Resource):
     def target():
         print("running target")
         print(request.json)
+
         response_data = {
-            "message": "message",
-            "settings": [
-                {
-                    "label": "setting_label",
-                    "type": "text",
-                    "default": "setting_value",
-                    "required": True
-                }
-            ]
-        }
-        response_data = {
-            "event_name": "message_formatted",
+            "event_name": "NAPOD Target",
             "message": f"Hello From NAPOD",
             "status": "success",
-            "username": "message-formatter-bot"
+            "username": "NAPOD"
         }
         return jsonify(response_data), 200
 
