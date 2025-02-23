@@ -11,9 +11,10 @@ def bad_request(e):
 
 
 @app.errorhandler(404)
-def not_found(e):
+def not_found(e):    
     return jsonify({
         "message": "Not Found",
+        "samples": [str(route) for route in app.url_map.iter_rules()],
         "error": str(e)
         }), 404
 
