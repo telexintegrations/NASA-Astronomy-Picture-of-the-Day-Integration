@@ -20,7 +20,7 @@ class ServerResource(Resource):
         
         with open('integration_settings.json', 'r') as f:
             settings = json.load(f)
-            # settings['data']['target_url'] = f"{config.app_url}/target"
+            settings['data']['target_url'] = f"{config.app_url}/target"
             settings['data']['tick_url'] = f"{config.app_url}/napod-tick"
 
         return jsonify(settings), 200
