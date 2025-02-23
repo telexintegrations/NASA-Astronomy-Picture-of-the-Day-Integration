@@ -175,10 +175,10 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
    - `target_url` for channel is expected when making a post request
    ```bash
       curl -XPOST  https://napod.onrender.com/api/tick -H "accept: application/json"   -H "Content-Type: application/json"   -d '{
-         "target_url": "https://ping.telex.im/v1/webhooks/01952fb5-b579-7754-9218-6fafaa359a21",
+         "return_url": "https://ping.telex.im/v1/webhooks/01952fb5-b579-7754-9218-6fafaa359a21",
          }'
   ```
-  - `target_url` default to NAPOD telex channel for get requests.
+  - `return_url` default to NAPOD telex channel for get requests.
 
    ![Telex integration](https://github.com/telexintegrations/NASA-Astronomy-Picture-of-the-Day-Integration/blob/main/images/NAPOD-telex.png)
 

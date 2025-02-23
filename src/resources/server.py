@@ -31,7 +31,7 @@ class ServerResource(Resource):
         print("running tick")
         if request.method == 'POST':
             print(request.json)
-            url = request.json.get('target_url', "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d")
+            url = request.json.get('return_url', "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d")
         else:
             url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
 
