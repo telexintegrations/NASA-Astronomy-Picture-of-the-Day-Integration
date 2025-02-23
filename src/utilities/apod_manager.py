@@ -16,5 +16,20 @@ class APODManager:
             return {"error": "An error occurred while fetching the APOD data"}, 400
         return response.json()
 
+async def trigger_tick(url):
+    
+    payload = {
+            "event_name": "NASA Picture of the Day",
+            "message": "Hello From NAPOD",
+            "status": "success",
+            "username": "NAPOD"
+        }
 
-
+    requests.post(
+            url,
+            json=payload,
+            headers={
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        )

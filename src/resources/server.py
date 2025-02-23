@@ -5,7 +5,7 @@ from flask import Response, jsonify, request
 from flask_restful import Resource
 
 from .. import config
-from ..utilities.apod_manager import APODManager
+from ..utilities.apod_manager import APODManager, trigger_tick
 
 
 class ServerResource(Resource):
@@ -26,26 +26,13 @@ class ServerResource(Resource):
         return jsonify(settings), 200
     
     @staticmethod
-    def tick():
+    async def tick():
         print("running tick")
         print(request.json)
         url = request.json['return_url']
         # url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
-        payload = {
-            "event_name": "NASA Picture of the Day",
-            "message": "Hello From NAPOD",
-            "status": "success",
-            "username": "NAPOD"
-        }
-
-        response = requests.post(
-            url,
-            json=payload,
-            headers={
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        )
+        await trigger_tick(url)
+        
         response = {'status': 'accepted'}
         print(response)
         

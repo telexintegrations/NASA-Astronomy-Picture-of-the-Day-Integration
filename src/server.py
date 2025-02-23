@@ -16,8 +16,8 @@ server.secret_key = config.secret_key
 server.url_map.strict_slashes = False
 
 # set up default error handlers
-# with server.app_context():
-    # from .utilities import error_handlers
+with server.app_context():
+    from .utilities import error_handlers
 
 
 # set up CORS
