@@ -14,8 +14,6 @@ A **Telex Interval Integration** that fetches [NASA’s Astronomy Picture of the
 7. [Running the Application](#running-the-application)  
 8. [Telex Integration Setup](#telex-integration-setup)  
 9. [Usage & Endpoints](#usage--endpoints)  
-10. [Testing](#testing)  
-11. [Error Handling](#error-handling)  
 12. [Contributing](#contributing)  
 13. [License](#license)  
 14. [Support](#support)  
@@ -75,6 +73,9 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
 - **Python 3.XX**
 - **Flask** 
 - **Requests**
+- **Deployment Platform**: [Render](https://napod.onrender.com)
+- **Version Control**: GitHub
+
 
 ---
 
@@ -135,11 +136,11 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
    ```
 
 2. **Scheduling the Integration**  
-   - The application should run continuously to ensure it can receive the Telex `/tick` calls at the defined interval.
+   - The application should run continuously to ensure it can receive the Telex `/api/napod-tick` calls at the defined interval.
    - Alternatively, if you use an internal scheduler (like `APScheduler`), it will trigger the APOD fetch at the specified time (e.g., 8 AM daily).
 
 3. **Verifying the Endpoint**  
-   - For an interval integration, Telex calls the `/tick` endpoint at the scheduled interval. Ensure you have a route (e.g., `POST /tick`) to handle this.
+   - For an interval integration, Telex calls the `/api/napod-tick` endpoint at the scheduled interval.
 
 ---
 
@@ -163,36 +164,25 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
 
 ## Usage & Endpoints
 
-- **`POST /tick`**  
+- **`GET /api/integration.json`**
+   - Fetches the Telex integration configuration
+
+- **`POST | GET /api/napod-tick`**  
   - Called by Telex at the interval you set in the integration.  
   - Fetches APOD data from NASA’s API, formats the content, and posts it to the configured Telex channel.  
   - Optionally cross-posts to Slack/Twitter if enabled.
 
-- **Optional Health Check** (e.g., `GET /healthcheck`)  
-  - Returns a simple JSON message indicating that the integration is running.
-
----
-
-## Testing
-
-1. **Local Tests**  
-   - Use `pytest` or `unittest` to verify your code logic.
+   - `target_url` for channel is expected when making a post request
    ```bash
-   pytest
-   ```
-2. **Test Scenarios**  
-   - **Valid NASA API Key**: Confirm the APOD data is fetched correctly.  
-   - **Invalid NASA API Key**: Verify error handling or fallback behavior.  
-   - **Slack/Twitter Posting**: Ensure cross-posting is successful when configured.  
-   - **Scheduler**: Simulate or manually call the `/tick` endpoint to confirm the correct posting flow.
+      curl -XPOST  https://napod.onrender.com/api/tick -H "accept: application/json"   -H "Content-Type: application/json"   -d '{
+         "target_url": "https://ping.telex.im/v1/webhooks/01952fb5-b579-7754-9218-6fafaa359a21",
+         }'
+  ```
+  - `target_url` default to NAPOD telex channel for get requests.
 
----
 
-## Error Handling
-
-- **API Failures**: If NASA’s APOD API is unreachable or returns an error, the integration logs the issue and optionally sends an alert message to Telex.  
-- **Invalid Settings**: If required environment variables (e.g., `NASA_API_KEY`) are missing, the integration should log an error and skip the posting.  
-- **Cross-Posting Errors**: If Slack/Twitter posting fails, log the error and continue.  
+- **Optional Health Check** (e.g., `GET /api/healthcheck`)  
+  - Returns a simple JSON message indicating that the integration is running.
 
 ---
 
