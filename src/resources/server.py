@@ -20,8 +20,8 @@ class ServerResource(Resource):
         
         with open('integration_settings.json', 'r') as f:
             settings = json.load(f)
-            settings['data']['target_url'] = f"{config.app_url}/target"
-            settings['data']['tick_url'] = f"{config.app_url}/tick"
+            # settings['data']['target_url'] = f"{config.app_url}/target"
+            settings['data']['tick_url'] = f"{config.app_url}/napod-tick"
 
         return jsonify(settings), 200
     
@@ -29,8 +29,8 @@ class ServerResource(Resource):
     def tick():
         print("running tick")
         print(request.json)
-
-        url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
+        url = request.json['return_url']
+        # url = "https://ping.telex.im/v1/webhooks/01952fda-3658-7ddb-aa06-af3cb2462c3d"
         payload = {
             "event_name": "NASA Picture of the Day",
             "message": "Hello From NAPOD",
