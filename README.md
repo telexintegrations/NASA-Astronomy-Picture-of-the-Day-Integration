@@ -180,6 +180,8 @@ This integration automatically retrieves NASA’s Astronomy Picture of the Day (
   ```
   - `target_url` default to NAPOD telex channel for get requests.
 
+   ![Telex integration](https://github.com/telexintegrations/NASA-Astronomy-Picture-of-the-Day-Integration/blob/main/images/NAPOD-telex.png)
+
 
 - **Optional Health Check** (e.g., `GET /api/healthcheck`)  
   - Returns a simple JSON message indicating that the integration is running.
